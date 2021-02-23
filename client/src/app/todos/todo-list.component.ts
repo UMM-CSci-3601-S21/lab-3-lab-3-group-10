@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Todo } from './todo';
 import { TodoService  } from './todo.service';
 
@@ -11,7 +12,7 @@ export class TodoListComponent implements OnInit {
 
   public todos: Todo[];
 
-  constructor(private todoService: TodoService) { }
+  constructor(private todoService: TodoService, private snackBar: MatSnackBar) { }
 
   getTodosFromServer() {
     this.todoService.getTodos().subscribe(returnedTodos => {

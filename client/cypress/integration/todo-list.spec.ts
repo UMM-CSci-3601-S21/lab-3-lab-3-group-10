@@ -1,4 +1,4 @@
-import {TodoListPage} from '../support/todo-list.po'
+import {TodoListPage} from '../support/todo-list.po';
 
 const page = new TodoListPage();
 
