@@ -8,8 +8,7 @@ import { User, UserRole } from './user';
 export class UserService {
   readonly userUrl: string = environment.apiUrl + 'users';
 
-  constructor(private httpClient: HttpClient) {
-  }
+  constructor(private httpClient: HttpClient) { }
 
   getUsers(filters?: { role?: UserRole; age?: number; company?: string }): Observable<User[]> {
     let httpParams: HttpParams = new HttpParams();
