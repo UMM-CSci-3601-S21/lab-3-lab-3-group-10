@@ -71,6 +71,29 @@ describe('TodoService', () => {
     });
 
   });
+
+  describe('filterTodos()', () => {
+    /*
+     * Since `filterTodos` actually filters "locally" (in
+     * Angular instead of on the server), we do want to
+     * confirm that everything it returns has the desired
+     * properties. Since this doesn't make a call to the server,
+     * though, we don't have to use the mock HttpClient and
+     * all those complications.
+     */
+    it('filters by owner', () => {
+      const ownerName = 'i';
+      const filteredTodos = todoService.filterTodos(testTodos, { owner: ownerName });
+      // There should be two owners with an 'i' in their
+      // owner: Nic and Alice.
+      expect(filteredTodos.length).toBe(2);
+      // Every returned owner's name should contain an 'i'.
+      filteredTodos.forEach(todo => {
+        expect(todo.owner.indexOf(ownerName)).toBeGreaterThanOrEqual(0);
+      });
+    });
+  });
+
   it('should be created', () => {
     expect(todoService).toBeTruthy();
   });
