@@ -45,13 +45,17 @@ describe('TodoService', () => {
     service = TestBed.inject(TodoService);
   });
 
+  // describe('getTodos()', () => {
+
   // // Specify that (exactly) one request will be made to the specified URL with the role parameter.
   // const req = httpTestingController.expectOne(
   //   (request) => request.url.startsWith(service.todoUrl)
   // );
 
-  // Check that the request made to that URL was a GET request.
+  // //Check that the request made to that URL was a GET request.
   // expect(req.request.method).toEqual('GET');
+
+  // });
 
   it('should be created', () => {
     expect(service).toBeTruthy();

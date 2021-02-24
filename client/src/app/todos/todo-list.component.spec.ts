@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -14,7 +14,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterTestingModule } from '@angular/router/testing';
-// import { MockTodoService } from '../../testing/todo.service.mock';
+import { MockTodoService } from '../../testing/todo.service.mock';
 
 import { Todo } from './todo';
 import { TodoListComponent } from './todo-list.component';
@@ -42,22 +42,22 @@ describe('TodoListComponent', () => {
   let todoList: TodoListComponent;
   let fixture: ComponentFixture<TodoListComponent>;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
+  beforeEach(() => {
+    TestBed.configureTestingModule({
       imports: [COMMON_IMPORTS],
       declarations: [ TodoListComponent ],
-      providers: [{ provide: TodoService}],
-    })
-    .compileComponents();
+      providers: [{ provide: TodoService, useValue: new MockTodoService()}],
+    });
+    // .compileComponents();
   });
 
-  beforeEach(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.compileComponents().then(() => {
     fixture = TestBed.createComponent(TodoListComponent);
     todoList = fixture.componentInstance;
     fixture.detectChanges();
   });
-});
+}));
 
   it('should create', () => {
     expect(todoList).toBeTruthy();
