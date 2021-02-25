@@ -11,13 +11,34 @@ import { TodoService  } from './todo.service';
 export class TodoListComponent implements OnInit {
 
   public todos: Todo[];
+  public filteredTodos: Todo[];
+
+  public ownerName: string;
+  public todoStatus: boolean;
+  public todoBody: string;
+  public todoCategory: string;
+  serverFilteredTodos: Todo[];
 
   constructor(private todoService: TodoService, private snackBar: MatSnackBar) { }
 
   getTodosFromServer() {
-    this.todoService.getTodos().subscribe(returnedTodos => {
-      this.todos = returnedTodos;
+    this.todoService.getTodos({
+      owner: this.ownerName,
+    }).subscribe(returnedTodos => {
+      this.serverFilteredTodos = returnedTodos;
+      this.updateFilter();
+    }, err => {
+      this.snackBar.open(
+        'Problem contacting the server – try again',
+        'OK',
+        // The message will disappear after 3 seconds.
+        { duration: 3000 });
     });
+  }
+
+  public updateFilter() {
+    this.filteredTodos = this.todoService.filterTodos(
+      this.serverFilteredTodos, { owner: this.ownerName });
   }
 
   ngOnInit(): void {
