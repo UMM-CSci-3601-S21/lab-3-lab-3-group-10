@@ -103,6 +103,7 @@ describe('TodoService', () => {
         expect(todo.category.indexOf(todoCategory)).toBeGreaterThanOrEqual(0);
       });
     });
+
   });
 
   it('should be created', () => {

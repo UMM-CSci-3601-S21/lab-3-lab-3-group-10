@@ -14,7 +14,7 @@ export class TodoService {
 
   constructor(private httpClient: HttpClient) { }
 
-  getTodos(filters?: { owner?: string; category?: string}): Observable<Todo[]>{
+  getTodos(filters?: { owner?: string; category?: string; status?: boolean}): Observable<Todo[]>{
     let httpParams: HttpParams = new HttpParams();
     if (filters) {
       if (filters.owner) {
@@ -45,6 +45,7 @@ export class TodoService {
 
       filteredTodos = filteredTodos.filter(todo => todo.category.toLowerCase().indexOf(filters.category) !== -1);
     }
+
     return filteredTodos;
   }
 }

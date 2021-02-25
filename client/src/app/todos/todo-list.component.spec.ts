@@ -62,4 +62,9 @@ describe('TodoListComponent', () => {
   it('should create', () => {
     expect(todoList).toBeTruthy();
   });
+
+  it('contains an owner named "Chris"', () => {
+    expect(todoList.serverFilteredTodos.some((todo: Todo) => todo.owner === 'chris')).toBe(true);
+  });
+
 });

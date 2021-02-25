@@ -73,6 +73,15 @@ public class TodoDatabase {
       String targetCategory = queryParams.get("category").get(0);
       filteredTodos = filterTodosByCategory(filteredTodos, targetCategory);
     }
+     // Filter status if defined
+     if (queryParams.containsKey("status")) {
+      String targetStatus = queryParams.get("status").get(0);
+      boolean targetType= true;
+      if(targetStatus.equals("incomplete")) {
+        targetType = false;
+      }
+      filteredTodos = filterTodosByStatus(filteredTodos, targetType);
+    }
     // Sort todo with specific order if defined
     if (queryParams.containsKey("orderBy")) {
       String targetOrder = queryParams.get("orderBy").get(0);
@@ -145,6 +154,18 @@ public class TodoDatabase {
    */
   public Todo[] filterTodosByCategory(Todo[] todos, String targetCategory) {
     return Arrays.stream(todos).filter(x -> x.category.toLowerCase().equals(targetCategory.toLowerCase())).toArray(Todo[]::new);
+  }
+
+  /**
+   * Get an array of all the todos having the target status.
+   *
+   * @param todos           the list of todos to filter by category
+   * @param targetType  the target status to look for
+   * @return an array of all the todos from the given list that have the target
+   *         status
+   */
+  public Todo[] filterTodosByStatus(Todo[] todos, boolean targetType) {
+    return Arrays.stream(todos).filter(x -> x.status == targetType).toArray(Todo[]::new);
   }
 
   /**
