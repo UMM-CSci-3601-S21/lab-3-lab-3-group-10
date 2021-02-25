@@ -67,8 +67,4 @@ describe('TodoListComponent', () => {
     expect(todoList.serverFilteredTodos.some((todo: Todo) => todo.owner === 'chris')).toBe(true);
   });
 
-  it('contains two todos that are complete', () => {
-    expect(todoList.serverFilteredTodos.filter((todo: Todo) => todo.status === true).length).toBe(2);
-  });
-
 });

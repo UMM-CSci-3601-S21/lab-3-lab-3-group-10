@@ -18,6 +18,13 @@
           [(ngModel)]="todoCategory" (input)="updateFilter()">
           <mat-hint>Filtered on client</mat-hint>
         </mat-form-field>
+
+        <mat-form-field class="input-field">
+          <mat-label>Status</mat-label>
+          <input matInput id="status-input" placeholder="Filter by status"
+          [(ngModel)]="todoStatus" (input)="updateFilter()">
+          <mat-hint>Filtered on client</mat-hint>
+        </mat-form-field>
         </div>
   </mat-card-content>
 </mat-card>
