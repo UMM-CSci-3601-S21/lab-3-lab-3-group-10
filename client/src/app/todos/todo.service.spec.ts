@@ -103,6 +103,16 @@ describe('TodoService', () => {
         expect(todo.category.indexOf(todoCategory)).toBeGreaterThanOrEqual(0);
       });
     });
+    it('filters by status', () => {
+      const todoStatus = false;
+      const filteredTodos = todoService.filterTodos(testTodos, { status: todoStatus });
+      // There should be just one todo that has false (incomplete) as their status.
+      expect(filteredTodos.length).toBe(1);
+      // Every returned todo's status should contain false.
+      filteredTodos.forEach(todo => {
+        expect(todo.status.toString().indexOf(todoStatus.toString())).toBeGreaterThanOrEqual(0);
+      });
+    });
   });
 
   it('should be created', () => {
