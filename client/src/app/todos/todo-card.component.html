@@ -8,4 +8,7 @@
     <p>Category: <span class="todo-card-category">{{ todo.category }}</span></p>
     <p>Body: <span class="todo-card-body">{{todo.body}}</span></p>
   </mat-card-content>
+  <mat-card-actions>
+    <button mat-button data-test="viewTodoButton" *ngIf="this.simple" [routerLink]="['/todo', this.todo._id]">View Todo</button>
+  </mat-card-actions>
 </mat-card>
