@@ -14,21 +14,21 @@ describe('TodoService', () => {
       _id: '1234',
       owner: 'Nic',
       status: true,
-      body: 'test todo number one',
+      body: 'test todo number one-x',
       category: 'test-todo-1',
      },
      {
       _id: '12345',
       owner: 'Natasha',
       status: false,
-      body: 'test todo number two',
+      body: 'test todo number two-y',
       category: 'test-todo-2',
      },
      {
       _id: '123456',
       owner: 'Alice',
       status: true,
-      body: 'test todo number three',
+      body: 'test todo number three-z',
       category: 'test-todo-3',
      },
     ];
@@ -101,6 +101,18 @@ describe('TodoService', () => {
       // Every returned todo's category should contain 'test-todo1'.
       filteredTodos.forEach(todo => {
         expect(todo.category.indexOf(todoCategory)).toBeGreaterThanOrEqual(0);
+      });
+    });
+
+    it('filters by body', () => {
+      const todoBody = 'x';
+      const filteredTodos = todoService.filterTodos(testTodos, { body: todoBody });
+      // There should be one todo with an 'x' in its
+      // body: 'test todo number one-x'.
+      expect(filteredTodos.length).toBe(1);
+      // Every returned owner's name should contain an 'i'.
+      filteredTodos.forEach(todo => {
+        expect(todo.body.indexOf(todoBody)).toBeGreaterThanOrEqual(0);
       });
     });
 
