@@ -26,7 +26,7 @@ export class TodoService {
       params: httpParams,
     });
   }
-  filterTodos(todos: Todo[],filters: { owner?: string }): Todo[] {
+  filterTodos(todos: Todo[],filters: { owner?: string; category?: string }): Todo[] {
     let filteredTodos = todos;
 
     //Filter by owner
