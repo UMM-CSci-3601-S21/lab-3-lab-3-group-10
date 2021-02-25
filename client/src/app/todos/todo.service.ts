@@ -9,6 +9,7 @@ import { Todo } from './todo';
 })
 export class TodoService {
 
+
   readonly todoUrl: string = environment.apiUrl + 'todos';
 
 
@@ -58,4 +59,5 @@ export class TodoService {
 
     return filteredTodos;
   }
+
 }
