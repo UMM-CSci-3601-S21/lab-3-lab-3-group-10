@@ -1,5 +1,28 @@
-<h1 class="todo-list-title">Todos</h1>
-
-<ul class="todo-cards-container" *ngFor="let todo of todos">
-  <li class="todo-card">{{ todo.body }}</li>
-</ul>
+<div fxLayout="row">
+  <div fxFlex fxFlex.gt-sm="80" fxFlexOffset.gt-sm="10">
+    <mat-card class="todo-filters">
+      <mat-card-title class="todo-list-title">Todos</mat-card-title>
+      <mat-card-content fxLayout="column" >
+        <mat-form-field class="input-field">
+          <div fxLayout="row wrap" fxLayoutGap="10px">
+          <mat-label>Owner</mat-label>
+          <input matInput id="owner-name-input" placeholder="Filter by owner"
+          [(ngModel)]="ownerName" (input)="updateFilter()">
+          <mat-hint>Filtered on client</mat-hint>
+        </div>
+        </mat-form-field>
+  </mat-card-content>
+</mat-card>
+</div>
+</div>
+<div>
+  <mat-card-content>
+    <mat-nav-list class="todo-nav-list">
+      <h3 mat-subheader>Todos</h3>
+      <a mat-list-item *ngFor="let todo of this.filteredTodos" [routerLink]="['/todos', todo._id]" class="todo-list-item">
+        <h3 matLine class="todo-list-name"> {{todo.owner}} </h3>
+        <p matLine class="user-list-role"> {{todo.body}} </p>
+      </a>
+    </mat-nav-list>
+  </mat-card-content>
+</div>
