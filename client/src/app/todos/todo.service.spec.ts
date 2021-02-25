@@ -92,6 +92,17 @@ describe('TodoService', () => {
         expect(todo.owner.indexOf(ownerName)).toBeGreaterThanOrEqual(0);
       });
     });
+
+    it('filters by category', () => {
+      const todoCategory = 'test-todo-1';
+      const filteredTodos = todoService.filterTodos(testTodos, { category: todoCategory });
+      // There should be just one todo that has test-todo1 as their category.
+      expect(filteredTodos.length).toBe(1);
+      // Every returned todo's category should contain 'test-todo1'.
+      filteredTodos.forEach(todo => {
+        expect(todo.category.indexOf(todoCategory)).toBeGreaterThanOrEqual(0);
+      });
+    });
   });
 
   it('should be created', () => {
